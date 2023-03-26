@@ -1,3 +1,124 @@
+var questions = document.querySelector('#questions');
+var choices = array.from(document.querySelectorAll('.choice.text'));
+var timerEl = document.querySelector('#timer');
+var scoreEl = document.querySelector('#score');
+//var questions = document.querySelector('#questions');
+
+let currentQuestion = {}
+let answerChoices = true
+let score = 0
+let timer = 100
+let allQuestions = []
+
+let questions = [
+  {
+    question: "Who was the second president?",
+    choice1: "Adams",
+    choice2: "Madison",
+    choice3: "Monroe",
+    choice4: "Jefferson",
+    answer: 1,
+  },
+  {
+    question: "Who was president in 1971?",
+    choice1: "Carter",
+    choice2: "Ford",
+    choice3: "Nixon",
+    choice4: "Johnson",
+    answer: 3,
+  },
+  {
+    question: "Who was the 13th president?",
+    choice1: "Polk",
+    choice2: "Fillmore",
+    choice3: "Taylor",
+    choice4: "Pierce",
+    answer: 2,
+  },
+  {
+    question: "Who was president in 1957?",
+    choice1: "Eisenhower",
+    choice2: "Johnson",
+    choice3: "Kennedy",
+    choice4: "Truman",
+    answer: 1,
+  },
+  {
+    question: "Who was president in 1900?",
+    choice1: "Harrison",
+    choice2: "Roosevelt",
+    choice3: "Cleveland",
+    choice4: "McKinley",
+    answer: 4,
+  },
+  {
+    question: "Who was the 29th president?",
+    choice1: "Taft",
+    choice2: "Coolidge",
+    choice3: "Wilson",
+    choice4: "Harding",
+    answer: 4,
+  },
+  {
+    question: "Who was the 31st president?",
+    choice1: "Hoover",
+    choice2: "Truman",
+    choice3: "Coolidge",
+    choice4: "Grant",
+    answer: 1,
+  },
+  {
+    question: "Who was the 39th president?",
+    choice1: "Clinton",
+    choice2: "Bush",
+    choice3: "Carter",
+    choice4: "Reagan",
+    answer: 3,
+  },
+  {
+    question: "Who was the 20th president?",
+    choice1: "Arthur",
+    choice2: "Garfield",
+    choice3: "Grant",
+    choice4: "Hayes",
+    answer: 2,
+  },
+  {
+    question: "Who was the president in 1859?",
+    choice1: "Van Buren",
+    choice2: "Tyler",
+    choice3: "Fillmore",
+    choice4: "Buchanan",
+    answer: 4,
+  },
+]
+
+let scoreEl = 00
+let timerEl = 100
+
+startGame = () => {
+  score = 0
+  timer = 100
+  availableQuestion = [...questions]
+  getNewQuestion()
+}
+
+getNewQuestion = () => {
+  if(availableQuestion.length === 0 || timer === 0) {
+    localStorage.setItem('mostRecentScore', score)
+
+    return window.location.assign('/end.html')
+  }
+
+  //timerEL?
+  questionCounter++
+  progressText.innerText = `Question ${questionCounter} of ${MAX_QUESTIONS}`
+  timerEl
+  
+}
+
+
+/*
 var mainEl = document.querySelector('main');
 var playBtnEl = document.querySelector('#play-btn');
 var timerEl = document.querySelector('#time-el');
@@ -9,13 +130,14 @@ var lastQuestion = '';
 
 var questions = [
   {
-    questionText: 'favorite color?',
-    questionChoices: ['red', 'white', 'blue', 'pink'],
+    questionText: 'Who was the second president?',
+    questionChoices: ['Adams', 'Madison', 'Monroe', 'Jefferson'],
     correctAnswer: 0
   },
+
   {
-    questionText: 'favorite season?',
-    questionChoices: ['spring', 'summer', 'fall', 'winter'],
+    questionText: 'Who was president in 1971?',
+    questionChoices: ['Carter', 'Ford', 'Nixon', 'Johnson'],
     correctAnswer: 2
   }
 ];
@@ -102,3 +224,4 @@ function endGame() {
   clearInterval(interval)
 
 };
+*/

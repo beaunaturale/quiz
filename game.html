@@ -4,27 +4,41 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Quiz Game Game Page</title>
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="game.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Press+Start+2P&display=swap" rel="stylesheet">
   <script defer src="assets/script/script.js"></script>
+  <script defer src="game.js"></script>
   
 </head>
 <body>
-  <header>
-    <h1>Quiz Game</h1>
-    <h1 id="time-el" >Time: 100</h1>
+  <header class="score-timer">
+    <h2 id="score-el" class="score-timer">Score:00</h1>
+    <h2 id="time-el" class="score-timer">Time:100</h1>
   </header>
-  <main>
-  <div class="container">
-    <div id="home" class="flex-column flex-center">
-      <h1>Question?</h1>
-      <a href="index.html" id="play-btn" class="btn">Play</a>
-      <a href="highscores.html" id="highscore-btn" class="btn">High Scores</a>
+  <main class="container">
+    <div id="game" class="flex-column flex-center justify-center">
+      <h1 id="quetsions"></h1>
+      <div class="choice-container">
+        <p class="choice-prefix">A.</p>
+        <p class="choice-text" data-number="0"></p>
+      </div>
+      <div class="choice-container">
+        <p class="choice-prefix">B.</p>
+        <p class="choice-text" data-number="1"></p>
+      </div>
+      <div class="choice-container">
+        <p class="choice-prefix">C.</p>
+        <p class="choice-text" data-number="2"></p>
+      </div>
+      <div class="choice-container">
+        <p class="choice-prefix">D.</p>
+        <p class="choice-text" data-number="3"></p>
+      </div>
     </div>
-  </div>
   </main>
   
 </body>
