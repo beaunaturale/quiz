@@ -152,7 +152,7 @@ choices.forEach(choice => {
 
 incrementScore = num => {
   score +=num
-  scoreText.innerText = score
+  scoreEL.innerText = score
 }
 
 startGame()
