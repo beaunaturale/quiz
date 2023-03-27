@@ -1,14 +1,13 @@
-var questions = document.querySelector('#questions');
-var choices = array.from(document.querySelectorAll('.choice.text'));
-var timerEl = document.querySelector('#timer');
-var scoreEl = document.querySelector('#score');
-//var questions = document.querySelector('#questions');
+var question = document.querySelector('#questions');
+var choices = Array.from(document.querySelectorAll('.choice-text'));
+var timerEl = document.querySelector('#timer-el');
+var scoreEl = document.querySelector('#score-el');
 
 let currentQuestion = {}
-let answerChoices = true
+let acceptingAnswers = true
 let score = 0
-let timer = 100
-let allQuestions = []
+let time = 100
+let availableQuestions = []
 
 let questions = [
   {
@@ -90,32 +89,82 @@ let questions = [
     choice3: "Fillmore",
     choice4: "Buchanan",
     answer: 4,
-  },
+  }
 ]
 
-let scoreEl = 00
-let timerEl = 100
+const SCORE_POINTS = 100
+const MAX_QUESTIONS = 10
+
 
 startGame = () => {
   score = 0
   timer = 100
-  availableQuestion = [...questions]
+  availableQuestions = [...questions]
   getNewQuestion()
 }
 
 getNewQuestion = () => {
-  if(availableQuestion.length === 0 || timer === 0) {
+  if(availableQuestions.length === 0 || time <= 0) {
     localStorage.setItem('mostRecentScore', score)
 
     return window.location.assign('/end.html')
   }
 
-  //timerEL?
-  questionCounter++
-  progressText.innerText = `Question ${questionCounter} of ${MAX_QUESTIONS}`
-  timerEl
+  interval = setInterval(function() {
+    time--;
+    timerEl.textContent = `Time: ${time}`; 
+
+    if (time <= 0) {
+      clearInterval(interval);
+      endGame();
+      return;
+    }
+
+  const questionsIndex = Math.floor(Math.random() * availableQuestions.length)
+  currentQuestion = availableQuestions[questionsIndex]
+  question.innerText = currentQuestion.question
+
+  choices.forEach(choice => {
+    const number = choice.dataset['number']
+    choice.innerText = currentQuestion['choice' + number]
+  })
+
+  availableQuestion.splice(questionsIndex, 1)
+
+  acceptingAnswers = true
   
+})
+
+choices.forEach(choices => {
+  choice.addEventListener('click', e => {
+    if(!acceptingAnswers) return
+
+    acceptingAnswers = false
+    const selectChoice = e.target
+    const selectAnswer = selectedChoice.dataset['number']
+
+    let classToApply = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect'
+
+    if(classToApply === 'correct') {
+      incrementScore(SCORE_POINTS)
+    }
+
+    selectedChoice.parentElement.classList.add(classToApply)
+
+    setTimeout(() => {
+      selectedChoice.parentElement.classList.remove(classToApply)
+      getNewQuestion()
+
+    }, 1000)
+  })
+})
+
+incrementScore = num => {
+  score +=num
+  scoreText.innerText = score
 }
+
+startGame()
 
 
 /*
