@@ -111,7 +111,7 @@ getNewQuestion = () => {
   }
 
 
-  const questionsIndex = Math.floor(Math.random() * availableQuestions.length)
+  var questionsIndex = Math.floor(Math.random() * availableQuestions.length)
   currentQuestion = availableQuestions[questionsIndex]
   question.innerText = currentQuestion.question
 
@@ -120,7 +120,7 @@ getNewQuestion = () => {
     choice.innerText = currentQuestion['choice' + number]
   })
 
-  availableQuestion.splice(questionsIndex, 1)
+  availableQuestions.splice(questionsIndex, 1)
 
   acceptingAnswers = true
   
@@ -132,18 +132,18 @@ choices.forEach(choice => {
 
     acceptingAnswers = false
     const selectChoice = e.target
-    const selectAnswer = selectedChoice.dataset['number']
+    const selectAnswer = selectChoice.dataset['number']
 
-    let classToApply = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect'
+    let classToApply = selectAnswer == currentQuestion.answer ? 'correct' : 'incorrect'
 
     if(classToApply === 'correct') {
       incrementScore(SCORE_POINTS)
     }
 
-    selectedChoice.parentElement.classList.add(classToApply)
+    selectChoice.parentElement.classList.add(classToApply)
 
     setTimeout(() => {
-      selectedChoice.parentElement.classList.remove(classToApply)
+      selectChoice.parentElement.classList.remove(classToApply)
       getNewQuestion()
 
     }, 1000)
