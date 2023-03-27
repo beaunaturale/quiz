@@ -110,15 +110,6 @@ getNewQuestion = () => {
     return window.location.assign('/end.html')
   }
 
-  interval = setInterval(function() {
-    time--;
-    timerEl.textContent = `Time: ${time}`; 
-
-    if (time <= 0) {
-      clearInterval(interval);
-      endGame();
-      return;
-    }
 
   const questionsIndex = Math.floor(Math.random() * availableQuestions.length)
   currentQuestion = availableQuestions[questionsIndex]
@@ -133,7 +124,7 @@ getNewQuestion = () => {
 
   acceptingAnswers = true
   
-})
+}
 
 choices.forEach(choices => {
   choice.addEventListener('click', e => {
@@ -273,4 +264,5 @@ function endGame() {
   clearInterval(interval)
 
 };
+}
 */
